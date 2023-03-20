@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:38:46
+// Create Date: 20.03.2023 09:24:52
 // Design Name: 
-// Module Name: oled_x_y_coord
+// Module Name: beep_200Hz
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,12 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module oled_x_y_coord(
-
-    input [12:0] pixel_index,
-    output [6:0] x,
-    output [6:0] y
+module beep_200Hz(
+    input clock,
+    output reg [11:0] signal
     );
-    assign x = (pixel_index % 96);
-    assign y = (pixel_index / 96);
+    
+    always @ (clock) begin
+        signal = (clock == 1) ? 12'hFFF : 0;
+    end
 endmodule

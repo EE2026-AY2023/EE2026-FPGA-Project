@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:38:46
+// Create Date: 20.03.2023 09:36:50
 // Design Name: 
-// Module Name: oled_x_y_coord
+// Module Name: note
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,12 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module oled_x_y_coord(
-
-    input [12:0] pixel_index,
-    output [6:0] x,
-    output [6:0] y
+module note(
+    input clk,
+    output reg [11:0] signal = 0
     );
-    assign x = (pixel_index % 96);
-    assign y = (pixel_index / 96);
+    
+    reg count_up = 1;
+    
+    always @ (posedge clk) begin
+        if (signal == 0) 
+            count_up = 1;
+        if (signal == 68)
+            count_up = 0;
+        signal = (count_up == 1) ? signal + 1 : signal - 1;
+    end
+    
 endmodule
+

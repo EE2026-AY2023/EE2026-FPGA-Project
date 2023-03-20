@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:38:46
+// Create Date: 20.03.2023 09:30:13
 // Design Name: 
-// Module Name: oled_x_y_coord
+// Module Name: clock_freq
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,12 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module oled_x_y_coord(
+module clock_freq(
 
-    input [12:0] pixel_index,
-    output [6:0] x,
-    output [6:0] y
+    input clock,
+    input [31:0] limit,
+    output reg signal = 0
     );
-    assign x = (pixel_index % 96);
-    assign y = (pixel_index / 96);
+    
+    reg [31:0] count = 1;
+    
+    always @ (posedge clock) begin
+        count = (count == limit) ? 1 : count + 1;
+        signal = (count == 1) ? ~signal : signal;
+    end
 endmodule
