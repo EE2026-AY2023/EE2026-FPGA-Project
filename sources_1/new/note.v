@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:36:50
+// Create Date: 13.03.2023 14:47:48
 // Design Name: 
 // Module Name: note
 // Project Name: 
@@ -36,4 +36,3 @@ module note(
     end
     
 endmodule
-

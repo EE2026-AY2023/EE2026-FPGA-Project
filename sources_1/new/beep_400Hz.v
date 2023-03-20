@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:26:36
+// Create Date: 06.03.2023 09:16:00
 // Design Name: 
 // Module Name: beep_400Hz
 // Project Name: 
@@ -21,8 +21,7 @@
 
 
 module beep_400Hz(
-
-     input clock,
+    input clock,
     output reg [11:0] signal
     );
     

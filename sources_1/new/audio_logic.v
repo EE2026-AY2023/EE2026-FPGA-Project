@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:23:46
+// Create Date: 13.03.2023 14:11:01
 // Design Name: 
-// Module Name: audio_logic
+// Module Name: audio_individual_task
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,7 +21,6 @@
 
 
 module audio_logic(
-
     input clk100M, clk200, clk400,
     input pushbutton,
     input [15:0] sw,

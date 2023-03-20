@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:32:25
+// Create Date: 18.03.2023 23:51:36
 // Design Name: 
 // Module Name: group_mouse_click
 // Project Name: 
@@ -21,7 +21,6 @@
 
 
 module group_mouse_click(
-
     input clock,
     input mouse_left_click, mouse_right_click,
     input [6:0] mouse_x_scale, mouse_y_scale,
@@ -32,6 +31,9 @@ module group_mouse_click(
     );
     reg reset_prev = 0;
     wire reset = valid;
+//    always @(valid) begin
+//        reset = ~reset;
+//    end
     parameter zero  = 7'b0111111;
     parameter one   = 7'b0000110;
     parameter two   = 7'b1011011;
@@ -44,8 +46,9 @@ module group_mouse_click(
     parameter nine  = 7'b1101111;
     assign isValid = ((valid == 1) && ((clicked == zero) || (clicked == one) || (clicked == two) || (clicked == three) || (clicked == four) || (clicked == five) || (clicked == six) || (clicked == seven) || (clicked == eight) || (clicked == nine))) ? 1 : 0;
     always @(posedge clock) begin
-        if (reset_prev == 1 && reset == 0) begin
-            clicked = 7'b0000000;
+        if(reset_prev == 1 && reset == 0) begin
+
+                clicked = 7'b0000000;  
         end
         reset_prev <= reset;
         if ((mouse_x_scale > 18) && (mouse_x_scale < 40) && (mouse_y_scale >= 11) && (mouse_y_scale <= 13)) begin

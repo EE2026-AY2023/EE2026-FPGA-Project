@@ -2,8 +2,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
-// 
-// Create Date: 20.03.2023 09:41:14
+//
+// Create Date: 06.03.2023 10:25:50
 // Design Name: 
 // Module Name: timer_duration
 // Project Name: 
@@ -21,7 +21,7 @@
 
 
 module timer_duration(
-input start,
+    input start,
     input clk100M,
     input [31:0] limit,
     output reg signal = 0

@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:30:13
+// Create Date: 27.02.2023 10:17:02
 // Design Name: 
 // Module Name: clock_freq
 // Project Name: 
@@ -21,7 +21,6 @@
 
 
 module clock_freq(
-
     input clock,
     input [31:0] limit,
     output reg signal = 0

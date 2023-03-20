@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:27:15
+// Create Date: 06.03.2023 10:44:22
 // Design Name: 
 // Module Name: button_sensor
 // Project Name: 
@@ -21,8 +21,7 @@
 
 
 module button_sensor(
-
-     input clk100M,
+    input clk100M,
     input pushbutton,
     output reg signal = 0
     );

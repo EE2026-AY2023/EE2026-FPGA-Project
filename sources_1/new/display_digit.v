@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.03.2023 09:31:07
+// Create Date: 17.03.2023 22:14:16
 // Design Name: 
 // Module Name: display_digit
 // Project Name: 
@@ -21,7 +21,6 @@
 
 
 module display_digit(
-
     input [3:0] digit,
     output reg [6:0] digit_output = ~7'b0000000
     );
