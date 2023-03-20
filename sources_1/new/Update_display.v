@@ -23,7 +23,7 @@
 module Update_display (
     input [3:0] volume_level,
     output reg [8:0] led = 9'b000000000,
-    output reg [3:0] an = 4'b1111,
+    output reg an0 = 1,
     output reg [6:0] seg = 7'b1111111
     );
     always @ (*)
@@ -31,7 +31,7 @@ module Update_display (
         if(volume_level == 0) //volume level 0    
         begin
             led <= 9'b000000000; 
-            an <= 4'b1111;
+            an0 <= 1;
             seg <= 7'b1111111;
         end
         if(volume_level == 1) //volume level 1, display '1' on 7 segment display

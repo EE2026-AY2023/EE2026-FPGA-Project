@@ -23,10 +23,8 @@ module Top_Student (
     output [3:0] JB,
     
     //For audio input
-    input CLOCK,
-    input J_MIC_Pin3,
-    output J_MIC_Pin1,
-    output J_MIC_Pin4,
+    input JA3,
+    output JA1, JA4,
     
    //For OLED display
     inout PS2Clk, PS2Data,
@@ -48,22 +46,21 @@ module Top_Student (
     clock_freq clock_400Hz(clock, 125_000, clk400);
     
     //audio input
-    
     wire [11:0] MIC_in;
-    reg [8:0] LED;
+    wire [8:0] LED;
     wire [3:0] audio_input_number;
     reg [1:0] AN0;
     
     Audio_Input unit_Audio (
-        .CLK(CLOCK), // 100MHz clock
+        .CLK(clock), // 100MHz clock
         .cs(clk20k), // sampling clock, 20kHz
-        .MISO(J_MIC_Pin3), // J_MIC3_Pin3, serial mic input
-        .clk_samp(J_MIC_Pin1), // J_MIC3_Pin1
-        .sclk(J_MIC_Pin4), // J_MIC3_Pin4, MIC3 serial clock
+        .MISO(JA3), // J_MIC3_Pin3, serial mic input
+        .clk_samp(JA1), // J_MIC3_Pin1
+        .sclk(JA4), // J_MIC3_Pin4, MIC3 serial clock
         .sample(MIC_in) // 12-bit audio sample data
         );
     
-    audio_input_task(LED, AN0, audio_input_number);
+    audio_input_task audio_task(clk20k,LED, AN0, audio_input_number);
     
     wire isValid;
     wire [3:0] valid_number;
@@ -107,10 +104,10 @@ module Top_Student (
     wire [12:0] pixel_index;
     
     Oled_Display oled(
-         .clk(clk6p25m), .reset(rst), .frame_begin(frame_begin), .sending_pixels(sending_pixels),
-         .sample_pixel(sample_pixel), .pixel_index(pixel_index), .pixel_data(oled_data), 
-         .cs(JC[0]), .sdin(JC[1]), .sclk(JC[3]), .d_cn(JC[4]), .resn(JC[5]), .vccen(JC[6]), .pmoden(JC[7])
-       );
+    .clk(clk6p25m), .reset(rst), .frame_begin(frame_begin), .sending_pixels(sending_pixels),
+    .sample_pixel(sample_pixel), .pixel_index(pixel_index), .pixel_data(oled_data), 
+    .cs(JC[0]), .sdin(JC[1]), .sclk(JC[3]), .d_cn(JC[4]), .resn(JC[5]), .vccen(JC[6]), .pmoden(JC[7])
+    );
             
     wire [6:0] oled_x;
     wire [6:0] oled_y;
@@ -134,17 +131,20 @@ module Top_Student (
     //Student D improvement: Piano display
     wire [15:0] oled_oled_data;
     oled_individual_improvement piano_display(clock, oled_x, oled_y, sw, oled_oled_data);
-    
-    //assign oled_data = oled_oled_data;
-    
+        
     wire[15:0] group_task_oled_data;
     wire [6:0] clicked;
+    
     group_task task_group(clock, oled_x, oled_y, mouse_x_scale, mouse_y_scale, sw, clicked, group_task_oled_data);
     group_mouse_click group_task_click(
     clock, mouse_left_click, mouse_right_click, mouse_x_scale, mouse_y_scale,
     , valid,clicked, isValid, valid_number);
-    seven_seg_display seven_seg_display(clk20k, isValid, valid_number, an, seg, dp);
-    
+    wire [3:0] an_group;
+    seven_seg_display seven_seg_display(clk20k, isValid, valid_number, an_group, seg, dp);
+    assign an[3] = an_group[3];
+    assign an[2] = an_group[2];
+    assign an[1] = an_group[1];
+    assign an[0] = AN0;
     wire is_ftw;
     assign is_ftw = sw[10];
     wire is_c_task;
@@ -155,7 +155,6 @@ module Top_Student (
     assign is_d_task = sw[13]; 
     wire is_group_task;
     assign is_group_task = sw[14];
-    
     //assignment
     assign led[15] = is_c_task ? ((mouse_left_click)? 1 : 0) : (is_group_task && sw[15]) ? isValid : 0;
     assign led[14] = (mouse_middle_click)? 1 : 0;
