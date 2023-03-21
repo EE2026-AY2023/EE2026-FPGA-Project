@@ -1,5 +1,6 @@
 module audio_input_task (
     input clock_20khz,
+    input [11:0] MIC_in,
     output reg [8:0] led = 9'b000000000,
     output reg an0 = 1,
     output reg [3:0] audio_input_number
@@ -8,7 +9,6 @@ module audio_input_task (
     reg [31:0] count = 32'b00000000000000000000000000000000;
     reg [11:0] peak_value = 12'b000000000000;
     reg [11:0] current_value = 12'b000000000000;
-    wire [11:0] MIC_in;
     wire [3:0] volume_level;
     wire [8:0] LED; 
     wire AN0;
