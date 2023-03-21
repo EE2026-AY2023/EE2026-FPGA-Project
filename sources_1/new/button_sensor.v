@@ -59,5 +59,4 @@ module button_sensor(
 //                ignore_count = ignore_count + 1;
 //        end
 //    end
-    
 endmodule

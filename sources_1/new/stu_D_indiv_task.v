@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 16.03.2023 16:51:15
+// Create Date: 20.03.2023 09:40:47
 // Design Name: 
 // Module Name: stu_D_indiv_task
 // Project Name: 

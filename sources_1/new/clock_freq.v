@@ -32,5 +32,4 @@ module clock_freq(
         count = (count == limit) ? 1 : count + 1;
         signal = (count == 1) ? ~signal : signal;
     end
-    
 endmodule

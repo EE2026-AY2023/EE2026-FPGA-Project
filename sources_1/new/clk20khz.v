@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 27.02.2023 09:26:52
+// Create Date: 20.03.2023 09:27:53
 // Design Name: 
 // Module Name: clk20khz
 // Project Name: 
@@ -21,6 +21,7 @@
 
 
 module clk20khz(
+
     input clk,
     output reg [31:0] limit,
     output reg slow_clk = 0

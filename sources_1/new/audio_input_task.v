@@ -34,5 +34,4 @@ module audio_input_task (
                 peak_value <= 32'b00000000000000000000000000000000;
             end
        end
-
 endmodule

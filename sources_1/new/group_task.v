@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 16.03.2023 20:52:31
+// Create Date: 20.03.2023 09:32:59
 // Design Name: 
 // Module Name: group_task
 // Project Name: 
@@ -108,6 +108,5 @@ module group_task(
                        oled_data <= 16'b00000_000000_00000;
                   end
             end
-        end
-        
+        end        
 endmodule

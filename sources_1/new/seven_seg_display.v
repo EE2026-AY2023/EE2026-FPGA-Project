@@ -40,7 +40,7 @@ module seven_seg_display(
     wire [3:0] digit_right;
     assign digit_left = (valid_number == 9) ? 1 : 0;
     assign digit_right = (valid_number == 9) ? 0 : valid_number + 1;
-    
+ 
 //    assign digit_to_display = (an_to_display == valid_left) ? digit_left : digit_right;
     
 //    wire [6:0] digit_signal;
@@ -69,5 +69,5 @@ module seven_seg_display(
     end 
     
     display_digit display_digit(digit_to_display, seg);
-        
+
 endmodule

@@ -28,5 +28,4 @@ module beep_200Hz(
     always @ (clock) begin
         signal = (clock == 1) ? 12'hFFF : 0;
     end
-    
 endmodule

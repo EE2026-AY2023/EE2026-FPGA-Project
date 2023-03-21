@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.03.2023 09:51:11
+// Create Date: 20.03.2023 09:38:46
 // Design Name: 
 // Module Name: oled_x_y_coord
 // Project Name: 
@@ -21,6 +21,7 @@
 
 
 module oled_x_y_coord(
+
     input [12:0] pixel_index,
     output [6:0] x,
     output [6:0] y
