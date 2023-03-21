@@ -9,7 +9,6 @@
 //  STUDENT D NAME:  
 //
 //////////////////////////////////////////////////////////////////////////////////
-
 module Top_Student (
     input clock,
     input [15:0] sw,
@@ -45,11 +44,11 @@ module Top_Student (
     clock_freq clock_200Hz(clock, 250_000, clk200);
     clock_freq clock_400Hz(clock, 125_000, clk400);
 
-    //audio input
+    //audio input stuff
     wire [11:0] MIC_in;
-    wire [8:0] LED;
+    wire [8:0] first_nine_LED;
     wire [3:0] audio_input_number;
-    wire [1:0] AN0;
+    wire AN0;
     
     Audio_Input unit_Audio (
         .CLK(clock), // 100MHz clock
@@ -60,12 +59,10 @@ module Top_Student (
         .sample(MIC_in) // 12-bit audio sample data
         );
         
-    audio_input_task audio_task(clk20k, LED, AN0, audio_input_number);
+    audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, audio_input_number);
     
     wire isValid;
     wire [3:0] valid_number;
-    //audio in
-    wire [3:0] audio_in_number;
 
     //group task audio
     //replace sw[15] and valid_number with signal from oled
@@ -141,12 +138,14 @@ module Top_Student (
     clock, mouse_left_click, mouse_right_click, mouse_x_scale, mouse_y_scale, sw[15],
     clicked, isValid, valid_number);
     wire [3:0] an_group;
-    seven_seg_display seven_seg_display(clk20k, isValid, valid_number, audio_in_number, an_group, seg, dp);
-
+    seven_seg_display seven_seg_display(clk20k, isValid, valid_number, audio_input_number, an_group, seg, dp);
+    
+    //assignment of anodes of 7-segment display
     assign an[3] = an_group[3];
     assign an[2] = an_group[2];
     assign an[1] = an_group[1];
     assign an[0] = AN0;
+    
     wire is_ftw;
     assign is_ftw = sw[11];
     wire is_c_task;
@@ -155,11 +154,12 @@ module Top_Student (
     assign is_d_task = sw[13]; 
     wire is_group_task;
     assign is_group_task = sw[14];
-    //assignment
+    
+    //assignment of LEDs
     assign led[15] = is_c_task ? ((mouse_left_click)? 1 : 0) : (is_group_task && sw[15]) ? isValid : 0;
     assign led[14] = (mouse_middle_click)? 1 : 0;
     assign led[13] = (mouse_right_click)? 1 : 0;
-    assign led[8:0] = LED;
+    assign led[8:0] = first_nine_LED;
     
     assign oled_data = is_group_task ? group_task_oled_data : (is_c_task ? c_indiv_oled_data : is_d_task ? d_indiv_oled_data :(is_ftw ? ftw_oled_data : 0));
         
