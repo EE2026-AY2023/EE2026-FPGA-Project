@@ -30,7 +30,9 @@ module group_task(
     
     //4E-1
     always @ (posedge clock) begin 
-        if (x == mouse_x_scale && y == mouse_y_scale) begin
+        if ((x >= mouse_x_scale && x <= mouse_x_scale + 2  && y == mouse_y_scale) 
+            || (x >= mouse_x_scale && x <= mouse_x_scale + 1  && y == mouse_y_scale + 1)
+            || ((x == mouse_x_scale || x == mouse_x_scale + 2)  && y == mouse_y_scale + 2))begin
             oled_data <= 16'hF800;
         end
         else begin
