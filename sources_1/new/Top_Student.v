@@ -12,7 +12,7 @@
 module Top_Student (
     input clock,
     input [15:0] sw,
-    input btnC,
+    input btnC, btnD,btnU,btnL,btnR,
     
     //7-segment display
     output [3:0] an,
@@ -28,7 +28,7 @@ module Top_Student (
    //For OLED display
     inout PS2Clk, PS2Data,
     output [15:0] led,
-    output [7:0] JC
+    output [7:0] JC,JXADC
     );
     
     //audio out
@@ -105,6 +105,31 @@ module Top_Student (
     .sample_pixel(sample_pixel), .pixel_index(pixel_index), .pixel_data(oled_data), 
     .cs(JC[0]), .sdin(JC[1]), .sclk(JC[3]), .d_cn(JC[4]), .resn(JC[5]), .vccen(JC[6]), .pmoden(JC[7])
     );
+    
+    wire [15:0] menu_oled_data;
+    wire menu_frame_begin, menu_sending_pixels, menu_sample_pixel;
+    wire [12:0] menu_pixel_index;
+    
+    wire [6:0] menu_oled_x;
+    wire [6:0] menu_oled_y;
+    flipped_xy_coord xy_menu(menu_pixel_index, menu_oled_x, menu_oled_y);
+    wire clean_btnD;
+    debounce test_btnD(clock, btnD, clean_btnD);
+    wire clean_btnU;
+    debounce test_btnU(clock, btnU, clean_btnU);
+    wire clean_btnR;
+    debounce test_btnR(clock, btnR, clean_btnR);
+    wire clean_btnL;
+    debounce test_btnL(clock, btnL, clean_btnL);
+    menu menu_disp(clock,clean_btnU,clean_btnD,clean_btnL,clean_btnR,sw[14],menu_oled_x,menu_oled_y,menu_oled_data);
+    //menu menu_disp(clock,sw[0],sw[1],sw[2],sw[3],sw[14],menu_oled_x,menu_oled_y,menu_oled_data);
+    
+    Oled_Display menu_oled(
+    .clk(clk6p25m), .reset(rst), .frame_begin(menu_frame_begin), .sending_pixels(menu_sending_pixels),
+    .sample_pixel(menu_sample_pixel), .pixel_index(menu_pixel_index), .pixel_data(menu_oled_data), 
+    .cs(JXADC[0]), .sdin(JXADC[1]), .sclk(JXADC[3]), .d_cn(JXADC[4]), .resn(JXADC[5]), .vccen(JXADC[6]), .pmoden(JXADC[7])
+    );
+    
             
     wire [6:0] oled_x;
     wire [6:0] oled_y;
