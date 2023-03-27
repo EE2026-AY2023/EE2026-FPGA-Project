@@ -63,7 +63,7 @@ module Top_Student (
     wire [8:0] first_nine_LED;
     wire [3:0] audio_input_number;
     wire AN0;
-    
+    wire [3:0] task_input_number;
     //audio improv stuff
     wire [8:0] LED_morse;
     wire [3:0] improv_input_number;
@@ -77,10 +77,10 @@ module Top_Student (
         .sample(MIC_in) // 12-bit audio sample data
         );
         
-    audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, audio_input_number);
+    audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, task_input_number);
     
     //audio_improv 
-    audio_input_improv audio_improv(clk20k, MIC_in, sw[1], LED_morse, AN0, audio_input_number); 
+    audio_input_improv audio_improv(clk20k, MIC_in, sw[1], LED_morse, AN0, improv_input_number); 
     
     wire is_valid_number;
     wire [3:0] valid_number;
@@ -187,6 +187,9 @@ module Top_Student (
     clock, mouse_left_click, mouse_right_click, mouse_x_scale, mouse_y_scale, sw[15],
     clicked, is_valid_number, valid_number);
     wire [3:0] an_group;
+    
+    assign audio_input_number = state == a_improv ? (sw[1] ? improv_input_number : task_input_number) : task_input_number;
+    
     seven_seg_display seven_seg_display(clk20k, is_valid_number, valid_number, audio_input_number, an_group, seg, dp);
     
     //assignment of anodes of 7-segment display
