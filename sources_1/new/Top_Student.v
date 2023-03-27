@@ -188,21 +188,12 @@ module Top_Student (
     assign an[1] = an_group[1];
     assign an[0] = AN0;
     
-    wire is_ftw;
-    assign is_ftw = sw[11];
-    wire is_c_task;
-    assign is_c_task = sw[12];
-    wire is_d_task;
-    assign is_d_task = sw[13]; 
-    wire is_group_task;
-    assign is_group_task = sw[14];
-    
     //assignment of LEDs
     assign led[15] = is_c_task ? ((mouse_left_click)? 1 : 0) : (is_group_task && sw[15]) ? isValid : 0;
     assign led[14] = (mouse_middle_click)? 1 : 0;
     assign led[13] = (mouse_right_click)? 1 : 0;
     assign led[8:0] = first_nine_LED;
     
-    assign oled_data = is_group_task ? group_task_oled_data : (is_c_task ? c_indiv_oled_data : is_d_task ? d_indiv_oled_data :(is_ftw ? ftw_oled_data : 0));
+    assign oled_data = state == grp_task ? group_task_oled_data : (state == c_task ? c_indiv_oled_data : state == d_task ? d_indiv_oled_data :(state == c_improv ? ftw_oled_data : 0));
         
 endmodule
