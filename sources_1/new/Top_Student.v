@@ -75,7 +75,7 @@ module Top_Student (
         
     audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, audio_input_number);
     
-    wire isValid;
+    wire is_valid_number;
     wire [3:0] valid_number;
 
     //group task audio
@@ -86,7 +86,7 @@ module Top_Student (
     //audio out stuff
     wire [11:0] audio_out;
     
-    audio_logic audio_main(clock, clk200, clk400, btnC, sw, isValid, valid_number, audio_out);
+    audio_logic audio_main(clock, clk200, clk400, btnC, sw, is_valid_number, valid_number, audio_out);
         
     Audio_Output speaker(
     .CLK(clk50M), .START(clk20k), .DATA1(audio_out), .RST(0),
@@ -178,9 +178,9 @@ module Top_Student (
      
     group_mouse_click group_task_click(
     clock, mouse_left_click, mouse_right_click, mouse_x_scale, mouse_y_scale, sw[15],
-    clicked, isValid, valid_number);
+    clicked, is_valid_number, valid_number);
     wire [3:0] an_group;
-    seven_seg_display seven_seg_display(clk20k, isValid, valid_number, audio_input_number, an_group, seg, dp);
+    seven_seg_display seven_seg_display(clk20k, is_valid_number, valid_number, audio_input_number, an_group, seg, dp);
     
     //assignment of anodes of 7-segment display
     assign an[3] = an_group[3];
@@ -189,7 +189,7 @@ module Top_Student (
     assign an[0] = AN0;
     
     //assignment of LEDs
-    assign led[15] = is_c_task ? ((mouse_left_click)? 1 : 0) : (is_group_task && sw[15]) ? isValid : 0;
+    assign led[15] = state == c_task ? ((mouse_left_click)? 1 : 0) : (state == grp_task && sw[15]) ? is_valid_number : 0;
     assign led[14] = (mouse_middle_click)? 1 : 0;
     assign led[13] = (mouse_right_click)? 1 : 0;
     assign led[8:0] = first_nine_LED;
