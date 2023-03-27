@@ -23,6 +23,7 @@
 module maze_generator(
     input clk,
     input [1:0] clk_random,
+    input [6:0] x, y,
     input start_generating,
     output reg [30:0] walls,
     output reg [4:0] bomb
@@ -70,7 +71,9 @@ module maze_generator(
     
     wire wall_exists;
     wire [4:0] wall;
+    wire [15:0] oled_data;
     get_wall get_wall(current, direction, walls, wall_exists, wall);
+    wall_display wall_display(clk, x, y, oled_data);
 
     always @ (current or start) begin
         visited[current] = 1;

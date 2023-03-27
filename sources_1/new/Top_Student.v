@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-
 //////////////////////////////////////////////////////////////////////////////////
 //
 //  FILL IN THE FOLLOWING INFORMATION:
@@ -22,13 +21,13 @@ module Top_Student (
     output [3:0] JB,
     
     //For audio input
-    input JXADC3,
-    output JXADC1, JXADC4,
+    input JA3,
+    output JA1, JA4,
     
    //For OLED display
     inout PS2Clk, PS2Data,
     output [15:0] led,
-    output [7:0] JC,JA
+    output [7:0] JC,JXADC
     );
     parameter [3:0] group = 4'b0000;
     parameter [3:0] studentA = 4'b0011;
@@ -57,34 +56,25 @@ module Top_Student (
     clock_freq clock_50MHz(clock, 1, clk50M);
     clock_freq clock_200Hz(clock, 250_000, clk200);
     clock_freq clock_400Hz(clock, 125_000, clk400);
-
     //audio input stuff
     wire [11:0] MIC_in;
     wire [8:0] first_nine_LED;
     wire [3:0] audio_input_number;
     wire AN0;
-    wire [3:0] task_input_number;
-    //audio improv stuff
-    wire [8:0] LED_morse;
-    wire [3:0] improv_input_number;
     
     Audio_Input unit_Audio (
         .CLK(clock), // 100MHz clock
         .cs(clk20k), // sampling clock, 20kHz
-        .MISO(JXADC3), // J_MIC3_Pin3, serial mic input
-        .clk_samp(JXADC1), // J_MIC3_Pin1
-        .sclk(JXADC4), // J_MIC3_Pin4, MIC3 serial clock
+        .MISO(JA3), // J_MIC3_Pin3, serial mic input
+        .clk_samp(JA1), // J_MIC3_Pin1
+        .sclk(JA4), // J_MIC3_Pin4, MIC3 serial clock
         .sample(MIC_in) // 12-bit audio sample data
         );
         
-    audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, task_input_number);
-    
-    //audio_improv 
-    audio_input_improv audio_improv(clk20k, MIC_in, sw[1], LED_morse, AN0, improv_input_number); 
+    audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, audio_input_number);
     
     wire is_valid_number;
     wire [3:0] valid_number;
-
     //group task audio
     //replace sw[15] and valid_number with signal from oled
     wire valid;
@@ -151,7 +141,7 @@ module Top_Student (
     Oled_Display menu_oled(
     .clk(clk6p25m), .reset(rst), .frame_begin(menu_frame_begin), .sending_pixels(menu_sending_pixels),
     .sample_pixel(menu_sample_pixel), .pixel_index(menu_pixel_index), .pixel_data(menu_oled_data), 
-    .cs(JA[0]), .sdin(JA[1]), .sclk(JA[3]), .d_cn(JA[4]), .resn(JA[5]), .vccen(JA[6]), .pmoden(JA[7])
+    .cs(JXADC[0]), .sdin(JXADC[1]), .sclk(JXADC[3]), .d_cn(JXADC[4]), .resn(JXADC[5]), .vccen(JXADC[6]), .pmoden(JXADC[7])
     );
     
             
@@ -169,7 +159,6 @@ module Top_Student (
     //Student C improvement: Find the white game 
     wire [15:0] ftw_oled_data;
     find_the_white ftw_game(clock, mouse_left_click, oled_x, oled_y, ftw_oled_data);
-
     //Student D
     wire [15:0] d_indiv_oled_data;
     stu_D_indiv_task d_indiv_task(clock, oled_x, oled_y, sw, d_indiv_oled_data);
@@ -180,16 +169,12 @@ module Top_Student (
         
     wire[15:0] group_task_oled_data;
     wire [6:0] clicked;
-
     group_task task_group(clock, oled_x, oled_y, mouse_x_scale, mouse_y_scale, sw, clicked, group_task_oled_data);  
      
     group_mouse_click group_task_click(
     clock, mouse_left_click, mouse_right_click, mouse_x_scale, mouse_y_scale, sw[15],
     clicked, is_valid_number, valid_number);
     wire [3:0] an_group;
-    
-    assign audio_input_number = state == a_improv ? (sw[1] ? improv_input_number : task_input_number) : task_input_number;
-    
     seven_seg_display seven_seg_display(clk20k, is_valid_number, valid_number, audio_input_number, an_group, seg, dp);
     
     //assignment of anodes of 7-segment display
@@ -197,13 +182,13 @@ module Top_Student (
     assign an[2] = an_group[2];
     assign an[1] = an_group[1];
     assign an[0] = AN0;
-    
+
     //assignment of LEDs
     assign led[15] = state == c_task ? ((mouse_left_click)? 1 : 0) : (state == grp_task && sw[15]) ? is_valid_number : 0;
     assign led[14] = (mouse_middle_click)? 1 : 0;
     assign led[13] = (mouse_right_click)? 1 : 0;
-    assign led[8:0] = state == a_improv ? (sw[1] ? LED_morse : first_nine_LED) : first_nine_LED;
-    
+    assign led[8:0] = first_nine_LED;
+
     assign oled_data = state == grp_task ? group_task_oled_data : (state == c_task ? c_indiv_oled_data : state == d_task ? d_indiv_oled_data :(state == c_improv ? ftw_oled_data : state == d_improv ? oled_oled_data : 0));
-    
+
 endmodule
