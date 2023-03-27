@@ -186,7 +186,7 @@ module oled_individual_improvement(
         
          else if ((x >= 51) && (x <= 55) && (y >= 9) && (y <= 35))  // F#
                begin
-                  oled_data <= (sw[8]) ? 16'b11110_101000_00000 : 16'b00000_000000_00000;
+                  oled_data <= (sw[8]) ? 16'b00110_101111_10111 : 16'b00000_000000_00000;
                end
         
          else if ((x >= 55) && (x <= 60) && (y >= 9) && (y <= 55))
@@ -204,7 +204,7 @@ module oled_individual_improvement(
        
         else if ((x >= 61) && (x <= 65) && (y >= 9) && (y <= 35))  // G#
                begin
-                  oled_data <= (sw[10]) ? 16'b010010_000001_00000 : 16'b00000_000000_00000;
+                  oled_data <= (sw[10]) ? 16'b01101_000000_11111 : 16'b00000_000000_00000;
                end
        
         else if ((x >= 65) && (x <= 70) && (y >= 9) && (y <= 55))
