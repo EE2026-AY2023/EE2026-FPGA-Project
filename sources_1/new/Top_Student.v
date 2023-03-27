@@ -22,13 +22,13 @@ module Top_Student (
     output [3:0] JB,
     
     //For audio input
-    input JA3,
-    output JA1, JA4,
+    input JXADC3,
+    output JXADC1, JXADC4,
     
    //For OLED display
     inout PS2Clk, PS2Data,
     output [15:0] led,
-    output [7:0] JC,JXADC
+    output [7:0] JC,JA
     );
     parameter [3:0] group = 4'b0000;
     parameter [3:0] studentA = 4'b0011;
@@ -71,9 +71,9 @@ module Top_Student (
     Audio_Input unit_Audio (
         .CLK(clock), // 100MHz clock
         .cs(clk20k), // sampling clock, 20kHz
-        .MISO(JA3), // J_MIC3_Pin3, serial mic input
-        .clk_samp(JA1), // J_MIC3_Pin1
-        .sclk(JA4), // J_MIC3_Pin4, MIC3 serial clock
+        .MISO(JXADC3), // J_MIC3_Pin3, serial mic input
+        .clk_samp(JXADC1), // J_MIC3_Pin1
+        .sclk(JXADC4), // J_MIC3_Pin4, MIC3 serial clock
         .sample(MIC_in) // 12-bit audio sample data
         );
         
@@ -151,7 +151,7 @@ module Top_Student (
     Oled_Display menu_oled(
     .clk(clk6p25m), .reset(rst), .frame_begin(menu_frame_begin), .sending_pixels(menu_sending_pixels),
     .sample_pixel(menu_sample_pixel), .pixel_index(menu_pixel_index), .pixel_data(menu_oled_data), 
-    .cs(JXADC[0]), .sdin(JXADC[1]), .sclk(JXADC[3]), .d_cn(JXADC[4]), .resn(JXADC[5]), .vccen(JXADC[6]), .pmoden(JXADC[7])
+    .cs(JA[0]), .sdin(JA[1]), .sclk(JA[3]), .d_cn(JA[4]), .resn(JA[5]), .vccen(JA[6]), .pmoden(JA[7])
     );
     
             
