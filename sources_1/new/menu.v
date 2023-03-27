@@ -23,7 +23,8 @@
 module menu(
     input clock, btnU, btnD, btnL, btnR,sw,
     input [6:0] x,y,
-    output reg [15:0] oled_data = 0
+    output reg [15:0] oled_data = 0,
+    output reg [3:0] state = 0
     );
     reg [11:0] alpha [27:0][19:0];
     reg [4:0] disp [8:0]; 
@@ -588,7 +589,7 @@ module menu(
 
     
     end
-    reg [3:0] state = 0;
+    
     parameter [3:0] group = 4'b0000;
     parameter [3:0] studentA = 4'b0011;
     parameter [3:0] studentB = 4'b0110;
