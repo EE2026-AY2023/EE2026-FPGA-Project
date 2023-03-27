@@ -204,6 +204,6 @@ module Top_Student (
     assign led[13] = (mouse_right_click)? 1 : 0;
     assign led[8:0] = state == a_improv ? (sw[1] ? LED_morse : first_nine_LED) : first_nine_LED;
     
-    assign oled_data = state == grp_task ? group_task_oled_data : (state == c_task ? c_indiv_oled_data : state == d_task ? d_indiv_oled_data :(state == c_improv ? ftw_oled_data : 0));
-        
+    assign oled_data = state == grp_task ? group_task_oled_data : (state == c_task ? c_indiv_oled_data : state == d_task ? d_indiv_oled_data :(state == c_improv ? ftw_oled_data : state == d_improv ? oled_oled_data : 0));
+    
 endmodule
