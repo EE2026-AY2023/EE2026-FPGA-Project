@@ -64,6 +64,10 @@ module Top_Student (
     wire [3:0] audio_input_number;
     wire AN0;
     
+    //audio improv stuff
+    wire [8:0] LED_morse;
+    wire [3:0] improv_input_number;
+    
     Audio_Input unit_Audio (
         .CLK(clock), // 100MHz clock
         .cs(clk20k), // sampling clock, 20kHz
@@ -74,6 +78,9 @@ module Top_Student (
         );
         
     audio_input_task audio_task(clk20k, MIC_in, first_nine_LED, AN0, audio_input_number);
+    
+    //audio_improv 
+    audio_input_improv audio_improv(clk20k, MIC_in, sw[1], LED_morse, AN0, audio_input_number); 
     
     wire is_valid_number;
     wire [3:0] valid_number;
@@ -137,7 +144,7 @@ module Top_Student (
     debounce test_btnR(clock, btnR, clean_btnR);
     wire clean_btnL;
     debounce test_btnL(clock, btnL, clean_btnL);
-    wire [4:0] state;
+    wire [3:0] state;
     menu menu_disp(clock,clean_btnU,clean_btnD,clean_btnL,clean_btnR,sw[14],menu_oled_x,menu_oled_y,menu_oled_data,state);
     //menu menu_disp(clock,sw[0],sw[1],sw[2],sw[3],sw[14],menu_oled_x,menu_oled_y,menu_oled_data);
     
@@ -192,7 +199,7 @@ module Top_Student (
     assign led[15] = state == c_task ? ((mouse_left_click)? 1 : 0) : (state == grp_task && sw[15]) ? is_valid_number : 0;
     assign led[14] = (mouse_middle_click)? 1 : 0;
     assign led[13] = (mouse_right_click)? 1 : 0;
-    assign led[8:0] = first_nine_LED;
+    assign led[8:0] = state == a_improv ? (sw[1] ? LED_morse : first_nine_LED) : first_nine_LED;
     
     assign oled_data = state == grp_task ? group_task_oled_data : (state == c_task ? c_indiv_oled_data : state == d_task ? d_indiv_oled_data :(state == c_improv ? ftw_oled_data : 0));
         
