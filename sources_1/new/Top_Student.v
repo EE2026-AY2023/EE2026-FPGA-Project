@@ -121,7 +121,8 @@ module Top_Student (
     debounce test_btnR(clock, btnR, clean_btnR);
     wire clean_btnL;
     debounce test_btnL(clock, btnL, clean_btnL);
-    menu menu_disp(clock,clean_btnU,clean_btnD,clean_btnL,clean_btnR,sw[14],menu_oled_x,menu_oled_y,menu_oled_data);
+    wire [4:0] state;
+    menu menu_disp(clock,clean_btnU,clean_btnD,clean_btnL,clean_btnR,sw[14],menu_oled_x,menu_oled_y,menu_oled_data,state);
     //menu menu_disp(clock,sw[0],sw[1],sw[2],sw[3],sw[14],menu_oled_x,menu_oled_y,menu_oled_data);
     
     Oled_Display menu_oled(
