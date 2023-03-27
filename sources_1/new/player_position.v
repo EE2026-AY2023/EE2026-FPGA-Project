@@ -29,7 +29,7 @@ module player_position(
     wire [4:0] neighbour_position; //square of neighbour
     reg [1:0] direction; //up == 0, down == 2, left == 3, right == 1
     
-    reg [31:0] walls; //separates the squares
+    reg [31:0] walls; //represents the maze as a whole
     reg [4:0] wall; 
     
     wire has_neighbour; 
