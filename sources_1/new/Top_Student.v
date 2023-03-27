@@ -30,7 +30,21 @@ module Top_Student (
     output [15:0] led,
     output [7:0] JC,JXADC
     );
-    
+    parameter [3:0] group = 4'b0000;
+    parameter [3:0] studentA = 4'b0011;
+    parameter [3:0] studentB = 4'b0110;
+    parameter [3:0] studentC = 4'b1001;
+    parameter [3:0] studentD = 4'b1100;
+    parameter [3:0] grp_task = 4'b0001;
+    parameter [3:0] grp_impr = 4'b0010;
+    parameter [3:0] a_task = 4'b0100;
+    parameter [3:0] a_improv = 4'b0101;
+    parameter [3:0] b_task = 4'b0111;
+    parameter [3:0] b_improv = 4'b1000;
+    parameter [3:0] c_task = 4'b1010;
+    parameter [3:0] c_improv = 4'b1011;
+    parameter [3:0] d_task = 4'b1101;
+    parameter [3:0] d_improv = 4'b1110;
     //audio out
     //clocks for audio out
     wire clk20k;
@@ -106,6 +120,8 @@ module Top_Student (
     .cs(JC[0]), .sdin(JC[1]), .sclk(JC[3]), .d_cn(JC[4]), .resn(JC[5]), .vccen(JC[6]), .pmoden(JC[7])
     );
     
+    
+    //menu student c improvement
     wire [15:0] menu_oled_data;
     wire menu_frame_begin, menu_sending_pixels, menu_sample_pixel;
     wire [12:0] menu_pixel_index;
