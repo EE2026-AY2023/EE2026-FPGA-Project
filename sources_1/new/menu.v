@@ -724,7 +724,6 @@ module menu(
         end
         state = next_state;
     end
-//    assign state = sw ? (btnL ? (state == 0 ? 14 : state -1) : (btnD ? (state == 14 ? 0 : state + 1) : state)) : state;
     
     reg [6:0] count = 0;
     wire clk_count;
@@ -740,7 +739,13 @@ module menu(
         btn_color = btn_color + 1;
     end
     always @(posedge clock) begin
-        if (y >= 22 && y <= 48 && alpha[disp[((x+count)/12)%9]][y-22][(x+count)%12] == 1) begin
+        if (y <= 20 && ((alpha[22][y][x%12] == 1 && x >= 25 && x <= 36)
+            || (alpha[15][y][x%12] == 1 && x >= 37 && x <= 48)
+            || (alpha[6][y][x%12] == 1 && x >= 49 && x <= 60)
+            || (alpha[14][y][x%12] == 1 && x >= 61 && x <= 72))) begin
+            oled_data <= 16'hffff;
+        end
+        else if (y >= 22 && y <= 48 && alpha[disp[((x+count)/12)%9]][y-22][(x+count)%12] == 1) begin
             case (state)
             group: oled_data <= 16'he9bf;
             grp_task,grp_impr: oled_data <= 16'he3bd;
