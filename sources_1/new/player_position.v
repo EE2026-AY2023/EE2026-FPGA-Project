@@ -40,52 +40,40 @@ module player_position(
     get_square(x,y,position);
     
     //when button is pressed, check whether neighbour exists first
-    //if neighbour exists, move
-    //if not, check whether wall exists
+    //if neighbour exists, check whether there is a wall
+    //then, move/dont move accordingly
     always @ (*) begin
         if(btnU == 1) begin //go up
             direction <= 0;
             if(has_neighbour == 1) begin
-                position <= neighbour_position;
-            end
-            else begin
-                if(has_wall == 1) begin
-                    walls[wall] <= 1;
+                if(has_wall == 0) begin
+                    position <= neighbour_position;    
                 end   
             end
         end
         if(btnD == 1) begin //go down
             direction <= 2;
             if(has_neighbour == 1) begin
-                position <= neighbour_position;
-            end
-            else begin
-                if(has_wall == 1) begin
-                    walls[wall] <= 1;
-                end      
-            end        
+                if(has_wall == 0) begin
+                    position <= neighbour_position;    
+                end 
+            end      
         end
         if(btnL == 1) begin //go left
             direction <= 3;
             if(has_neighbour == 1) begin
-                position <= neighbour_position;
-            end
-            else begin
-                if(has_wall == 1) begin
-                    walls[wall] <= 1;
-                end       
-            end        
+                if(has_wall == 0) begin
+                    position <= neighbour_position;    
+                end 
+            end     
         end
         if(btnR == 1) begin //go left
             direction <= 1;
             if(has_neighbour == 1) begin
-                position <= neighbour_position;
-            end
-            else begin
-                if(has_wall == 1) begin
-                    walls[wall] <= 1;
-                end       
-            end        
+                if(has_wall == 0) begin
+                    position <= neighbour_position;    
+                end 
+            end 
         end
     end
 endmodule
