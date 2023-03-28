@@ -48,25 +48,25 @@ module maze_proximity(
 //    reg signal;
 //    timer_duration beep(beep_start, clk100M, limit, sound_on);
     
-    reg [31:0] limit = 2_000_000_000;
+    reg [31:0] limit = 1_000_000_000;
     reg [31:0] count = 0;
     
     always @ (distance) begin
         //change counter freq depending on distance
         case (distance)
-            0 : limit <= 5_000_000;
-            1 : limit <= 10_000_000;
-            2 : limit <= 25_000_000;
-            3 : limit <= 50_000_000;
-            4 : limit <= 100_000_000;
-            5 : limit <= 250_000_000;
-            6 : limit <= 500_000_000;
-            7 : limit <= 1_000_000_000;
-            default : limit <= 2_000_000_000;
+            0 : limit <= 0;
+            1 : limit <= 5_000_000;
+            2 : limit <= 10_000_000;
+            3 : limit <= 20_000_000;
+            4 : limit <= 50_000_000;
+            5 : limit <= 100_000_000;
+            6 : limit <= 200_000_000;
+            7 : limit <= 500_000_000;
+            default : limit <= 1_000_000_000;
         endcase
     end
     
-    reg clk_beep = 0;
+//    reg clk_beep = 0;
     
     reg sound_on = 0;
     
@@ -74,8 +74,8 @@ module maze_proximity(
         if(sound_on == 0) begin
         if(count >= limit) begin
             count <= 0;
-            clk_beep <= ~clk_beep;
-            sound_on = 1;
+//            clk_beep <= ~clk_beep;
+            sound_on <= 1;
         end
         else
             count <= count + 1;
@@ -83,7 +83,7 @@ module maze_proximity(
         else begin
             if(count == 10_000_000) begin
                 count <= 0;
-                sound_on = 0;
+                sound_on <= 0;
             end
             else 
                 count <= count + 1;
