@@ -29,12 +29,18 @@ module player_position(
     wire [4:0] neighbour_position; //square of neighbour
     reg [1:0] direction; //up == 0, down == 2, left == 3, right == 1
     
-    reg [31:0] walls; //represents the maze as a whole
+    reg [30:0] walls; //represents the maze as a whole, obtained from maze generator
     reg [4:0] wall; 
     
     wire has_neighbour; 
     wire has_wall;
     
+    wire clk;
+    wire [1:0] clk_random;
+    wire start_generating;
+    wire[4:0] bomb;
+    
+    maze_generator(clk, clk_random, start_generating, walls, bomb);
     get_neighbour(position, direction, has_neighbour, neighbour_position);
     get_wall(position, direction, walls, has_wall, wall); 
     get_square(x,y,position);
