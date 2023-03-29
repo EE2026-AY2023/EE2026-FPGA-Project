@@ -207,6 +207,26 @@ module Top_Student (
     assign led[13] = (mouse_right_click)? 1 : 0;
     assign led[8:0] = state == a_improv ? (sw[1] ? LED_morse : first_nine_LED) : first_nine_LED;
     
-    assign oled_data = state == grp_task ? group_task_oled_data : (state == c_task ? c_indiv_oled_data : state == d_task ? d_indiv_oled_data :(state == c_improv ? ftw_oled_data : state == d_improv ? oled_oled_data : 0));
+    wire [15:0] end_lose_sc;
+    //change this to game state
+    reg [31:0] c = 0;
+    always @(posedge clock) begin
+        c = (c == 300_000_000) ? 0 : c + 1;
+    end
+    end_screen endlsc(clock, oled_x, oled_y, end_lose_sc);
+    wire [15:0] end_win_sc;
+    ftb_end_win_screen endwsc(clock, oled_x, oled_y, end_win_sc);
+    wire [15:0] startsc;
+    ftb_start_screen start_sc(clock, oled_x, oled_y, startsc);
+    wire [15:0] ftb_oled_data;
     
+    //change this to game state logic
+    assign ftb_oled_data = (c <= 200_000_000) ? startsc : ((c <= 250_000_000) ? end_win_sc : ((c <= 300_000_000) ? end_lose_sc : 0));
+    
+    assign oled_data = state == grp_task ? group_task_oled_data : 
+        (state == grp_impr ? ftb_oled_data : 
+        (state == c_task ? c_indiv_oled_data : 
+        (state == d_task ? d_indiv_oled_data :
+        (state == c_improv ? ftw_oled_data : 
+        (state == d_improv ? oled_oled_data : 0)))));
 endmodule
