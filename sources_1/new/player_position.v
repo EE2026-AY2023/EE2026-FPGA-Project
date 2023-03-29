@@ -36,8 +36,8 @@ module player_position(
     wire has_wall;
     
     wire [4:0] position;
-    wire walls;  //represents the maze as a whole, obtained from maze generator
-    wire bomb; //position of the bomb
+    wire [30:0] walls;  //represents the maze as a whole, obtained from maze generator
+    wire [4:0] bomb; //location of the bomb
     wire [1:0] clk_random;
     
     clk_random unit_random(clock, clk_random);
