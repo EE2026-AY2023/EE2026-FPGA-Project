@@ -22,9 +22,7 @@
 
 module player_position(
     input btnC, btnD, btnU, btnL, btnR, clock,
-    output reg [4:0] position = 0, //start at the "0" square
-    output reg [4:0] bomb, //position of the bomb
-    output reg [30:0] walls, //represents the maze as a whole, obtained from maze generator
+    output reg [4:0] plyer_position = 0, //start at the "0" square
     output reg bomb_found = 0 //change to 1 if bomb is located
     );
     
@@ -37,6 +35,9 @@ module player_position(
     wire has_neighbour; 
     wire has_wall;
     
+    wire [4:0] position;
+    wire walls;  //represents the maze as a whole, obtained from maze generator
+    wire bomb; //position of the bomb
     wire [1:0] clk_random;
     
     clk_random unit_random(clock, clk_random);
@@ -55,7 +56,7 @@ module player_position(
             direction <= 0;
             if(has_neighbour == 1) begin
                 if(has_wall == 0) begin
-                    position <= neighbour_position;    
+                    plyer_position <= neighbour_position;    
                 end   
             end
         end
@@ -63,7 +64,7 @@ module player_position(
             direction <= 2;
             if(has_neighbour == 1) begin
                 if(has_wall == 0) begin
-                    position <= neighbour_position;    
+                    plyer_position <= neighbour_position;    
                 end 
             end      
         end
@@ -71,7 +72,7 @@ module player_position(
             direction <= 3;
             if(has_neighbour == 1) begin
                 if(has_wall == 0) begin
-                    position <= neighbour_position;    
+                    plyer_position <= neighbour_position;    
                 end 
             end     
         end
@@ -79,7 +80,7 @@ module player_position(
             direction <= 1;
             if(has_neighbour == 1) begin
                 if(has_wall == 0) begin
-                    position <= neighbour_position;    
+                    plyer_position <= neighbour_position;    
                 end 
             end 
         end
