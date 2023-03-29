@@ -34,154 +34,318 @@ module wall_display(
     wire [30:0] walls;
     wire bomb_found;
     
-    maze_generator maze(clock, clk_random, start_generating, walls, bomb);
-    player_position player(btnD, btnU, btnL, btnR, clock, position, bomb_found);
+    //maze_generator maze_display(clock, clk_random, start_generating, walls, bomb);
+    //player_position player(btnD, btnU, btnL, btnR, clock, position, bomb_found);
     
+    reg [30:0] maze = 31'b0001010010101010101001010001101;
+    reg [19:0] square;
+   
     always @ (posedge clock) begin
-        if ((x == 11) && (y >= 2) && (y <= 61)) 
+    
+        //maze <= walls;
+//        square <= 0;
+//        square[position] <= 1;
+        
+//        if ((x == 11) && (y >= 2) && (y <= 61)) 
+//            begin
+//                oled_data <= 16'b00000_000000_00000;
+//            end
+//        else if ((x == 85) && (y >= 2) && (y <= 61)) 
+//            begin
+//                oled_data <= 16'b00000_000000_00000;
+//            end
+//        else if ((x >= 11) && (x <= 85) && (y == 2))
+//            begin
+//                oled_data <= 16'b00000_000000_00000;
+//            end
+//        else if ((x >= 11) && (x <= 85) && (y == 61))
+//            begin
+//                oled_data <= 16'b00000_000000_00000;
+//            end
+            
+        if ((x == 26) && (y >= 3) && (y <= 17))
             begin
+                if (maze[0] == 0) begin
+                oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
                 oled_data <= 16'b00000_000000_00000;
-            end
-        else if ((x == 85) && (y >= 2) && (y <= 61)) 
-            begin
-                oled_data <= 16'b00000_000000_00000;
-            end
-        else if ((x >= 11) && (x <= 85) && (y == 2))
-            begin
-                oled_data <= 16'b00000_000000_00000;
-            end
-        else if ((x >= 11) && (x <= 85) && (y == 61))
-            begin
-                oled_data <= 16'b00000_000000_00000;
-            end
-        else if ((x == 26) && (y >= 3) && (y <= 17))
-            begin
-                oled_data <= 16'b00000_000000_00000;
+                end
             end
         else if ((x == 41) && (y >= 3) && (y <= 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[1] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 56) && (y >= 3) && (y <= 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[2] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 71) && (y >= 3) && (y <= 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[3] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 26) && (y >= 18) && (y <= 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[4] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 41) && (y >= 18) && (y <= 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[5] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 56) && (y >= 18) && (y <= 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[6] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 71) && (y >= 18) && (y <= 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[7] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 26) && (y >= 33) && (y <= 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[8] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 41) && (y >= 33) && (y <= 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[9] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 56) && (y >= 33) && (y <= 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[10] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 71) && (y >= 33) && (y <= 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[11] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 26) && (y >= 48) && (y <= 60))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[12] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 41) && (y >= 48) && (y <= 60))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[13] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 56) && (y >= 48) && (y <= 60))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[14] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x == 71) && (y >= 48) && (y <= 60))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[15] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         
         else if ((x >= 12) && (x <= 35) && (y == 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[16] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 27) && (x <= 40) && (y == 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[17] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 42) && (x <= 55) && (y == 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[18] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 57) && (x <= 70) && (y == 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[19] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 72) && (x <= 35) && (y == 17))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[20] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 12) && (x <= 35) && (y == 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[21] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 27) && (x <= 40) && (y == 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[22] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 42) && (x <= 55) && (y == 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[23] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 57) && (x <= 70) && (y == 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[24] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 72) && (x <= 35) && (y == 32))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[25] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 12) && (x <= 35) && (y == 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[26] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 27) && (x <= 40) && (y == 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[27] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 42) && (x <= 55) && (y == 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[28] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 57) && (x <= 70) && (y == 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[29] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else if ((x >= 72) && (x <= 35) && (y == 47))
             begin
-                oled_data <= 16'b00000_000000_00000;
+                if (maze[30] == 0) begin
+                            oled_data <= 16'b11111_111111_11111;
+                            end
+                            else begin
+                            oled_data <= 16'b00000_000000_00000;
+                            end
             end
         else 
             begin
-                oled_data <= 16'b11111_111111_11111;
+                oled_data <= 16'b11111_000000_00000;
             end
         end
 endmodule
