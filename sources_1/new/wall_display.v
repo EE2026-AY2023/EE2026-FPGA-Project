@@ -25,7 +25,18 @@ module wall_display(
     input [6:0] x, y,
     output reg [15:0] oled_data = 0
     );
-
+    
+    wire [1:0] clk_random;
+    wire start_generating;
+    wire btnD, btnU, btnL, btnR;
+    wire [4:0] position; //start at the "0" square
+    wire [4:0] bomb;
+    wire [30:0] walls;
+    wire bomb_found;
+    
+    maze_generator maze(clock, clk_random, start_generating, walls, bomb);
+    player_position player(btnD, btnU, btnL, btnR, clock, position, bomb_found);
+    
     always @ (posedge clock) begin
         if ((x == 11) && (y >= 2) && (y <= 61)) 
             begin
@@ -167,6 +178,10 @@ module wall_display(
         else if ((x >= 72) && (x <= 35) && (y == 47))
             begin
                 oled_data <= 16'b00000_000000_00000;
+            end
+        else 
+            begin
+                oled_data <= 16'b11111_111111_11111;
             end
         end
 endmodule
