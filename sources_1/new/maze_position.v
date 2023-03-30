@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 03/27/2023 06:54:20 PM
+// Create Date: 30.03.2023 12:03:45
 // Design Name: 
-// Module Name: player_position
+// Module Name: maze_position
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module player_position(
+module maze_position(
     input btnC, btnD, btnU, btnL, btnR, clock,
     input [30:0] walls,
     input start_game,
