@@ -292,6 +292,7 @@ module audio_input_improv(
             morse_count <= 0;
             count <= 0;
             an <= 1;
+            morse_LED <= 9'b000000000;
         end
     end
 endmodule
