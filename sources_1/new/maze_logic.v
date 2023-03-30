@@ -29,6 +29,22 @@ module maze_logic(
     output [11:0] audio_out
     );
 
+    parameter [3:0] grp_impr = 4'b0010;
+    
+    wire U, D, L, R, C;
+    button_sensor button_U(clk100M, btnU, U);
+    button_sensor button_D(clk100M, btnD, D);
+    button_sensor button_L(clk100M, btnL, L);
+    button_sensor button_R(clk100M, btnR, R);
+    button_sensor button_C(clk100M, btnC, C);
+    
+    wire u, d, l, r, c;
+    assign u = (state == grp_impr) ? U : 0;
+    assign d = (state == grp_impr) ? D : 0;
+    assign l = (state == grp_impr) ? L : 0;
+    assign r = (state == grp_impr) ? R : 0;
+    assign c = (state == grp_impr) ? C : 0;
+
     reg [1:0] game_state = 0;
     parameter game_start = 0;
     parameter game_play = 1;
@@ -58,32 +74,25 @@ module maze_logic(
     wire [4:0] position, bomb;
     wire [1:0] random;
     reg start_game;
-    
+
     clk_random clk_random(clk100M, random);
     maze_generator maze_generator(clk100M, random, start_game, walls, bomb);
-    maze_position maze_position(btnC, btnD, btnU, btnL, btnR, walls, start_game, position);
+    maze_position maze_position(c, d, u, l, r, walls, start_game, position);
     maze_proximity maze_proximity(clk100M, position, bomb, audio_out);
-    
-    
-    
-    always @ (posedge clk100M) begin
+
+    always @ (posedge c) begin
         case (game_state)
-        game_start:begin 
-            
-        end
-        game_play:begin
-        
-        end
-        game_loss:begin
-        
-        end
-        game_win:begin
-        
-        end
-        default:begin
-        
-        end
+            game_start : begin
+                start_game <= 1;
+                game_state <= game_play;
+            end
+            game_play : begin
+                start_game <= 0;
+                game_state <= (position == bomb) ? game_win : game_loss;
+            end
+            game_loss : game_state <= game_start;
+            game_win : game_state <= game_start;
         endcase
     end
-    
+
 endmodule
