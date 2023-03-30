@@ -35,6 +35,9 @@ module display_digit(
     parameter seven = ~7'b0000111;
     parameter eight = ~7'b1111111;
     parameter nine  = ~7'b1101111;
+    parameter low = 7'b1110111;
+    parameter mid = 7'b0111111;
+    parameter high = 7'b1111110;
     
     always @ digit begin
         case (digit)
@@ -48,6 +51,9 @@ module display_digit(
             7 : digit_output = seven;
             8 : digit_output = eight;
             9 : digit_output = nine;
+            10: digit_output = low;
+            11: digit_output = mid;
+            12: digit_output = high;
             default : digit_output = ~7'b0000000;
         endcase
     end
