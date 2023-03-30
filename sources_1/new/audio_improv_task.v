@@ -95,15 +95,18 @@ module audio_input_improv(
                     begin
                         an <= 0;
                         //seg <= 7'b1111110;
+                        audio_input_number <= 12;
                     end
                     else if(morse == 19'b0000000000000000000) //for no sound input, display "lower bar"
                     begin
                         an <= 0;
                         //seg <= 7'b1110111;
+                        audio_input_number <= 10;
                     end
                     else begin //everything else (random inputs), display "middle bar"
                         an <= 0;
                         //seg <= 7'b0111111;
+                        audio_input_number <= 11;
                     end
                 end    
                 else begin
