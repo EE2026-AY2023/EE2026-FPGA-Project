@@ -50,7 +50,7 @@ module maze_logic(
     parameter game_play = 1;
     parameter game_loss = 2;
     parameter game_win = 3;
-
+    
     wire [15:0] end_lose_sc;
     ftb_end_loss_screen endlsc(clk100M,oled_x,oled_y,end_lose_sc);
     wire [15:0] end_win_sc;
@@ -59,7 +59,8 @@ module maze_logic(
     ftb_start_screen startsc(clk100M,oled_x,oled_y,start_sc);
     wire [15:0] maze_sc;
     //maze_display instantiate
-
+    
+    
     always @ game_state begin
         case (game_state)
             game_start : oled_out <= start_sc;
@@ -68,7 +69,7 @@ module maze_logic(
             game_win : oled_out <= end_win_sc;
         endcase
     end
-
+    
     wire [30:0] walls;
     wire [4:0] position, bomb;
     wire [1:0] random;

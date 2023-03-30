@@ -219,7 +219,7 @@ module Top_Student (
     always @(posedge clock) begin
         c = (c == 300_000_000) ? 0 : c + 1;
     end
-    end_screen endlsc(clock, oled_x, oled_y, end_lose_sc);
+    ftb_end_loss_screen endlsc(clock, oled_x, oled_y, end_lose_sc);
     wire [15:0] end_win_sc;
     ftb_end_win_screen endwsc(clock, oled_x, oled_y, end_win_sc);
     wire [15:0] startsc;
