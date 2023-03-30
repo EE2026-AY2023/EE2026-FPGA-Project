@@ -21,7 +21,7 @@
 
 //explosion credits:https://www.reddit.com/r/PixelArt/comments/wvtxti/explosion_effect_from_a_series_of_vfx_im_working/
 //<a href="https://www.freepik.com/free-vector/pixelated-trophy-card-with-lettering_29171430.htm">Image by gstudioimagen1</a> on Freepik
-module end_screen(
+module ftb_end_loss_screen(
     input clock,
     input [6:0] x, y,
     output reg [15:0] oled_data = 0
