@@ -5,7 +5,7 @@
 // 
 // Create Date: 03/27/2023 06:54:20 PM
 // Design Name: 
-// Module Name: player_position
+// Module Name: maze_position
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module player_position(
+module maze_position(
     input btnC, btnD, btnU, btnL, btnR, clock,
     output reg [4:0] plyer_position = 0, //start at the "0" square
     output reg bomb_found = 0 //change to 1 if bomb is located
