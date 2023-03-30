@@ -23,30 +23,29 @@
 module maze_generator(
     input clk,
     input [1:0] clk_random,
-    input [6:0] x, y,
     input start_generating,
-    output reg [30:0] walls,
-    output reg [4:0] bomb
+    output reg [30:0] walls = 31'h7FFFFFFF,
+    output reg [4:0] bomb = 0
     );
     
     //reg generation_completed;
     //reg [4:0] walls_removed;
-    reg [19:0] visited;
+    reg [19:0] visited = 0;
     
     reg [4:0] stack [19:0];
-    reg [4:0] steps_from_start;
-    reg [4:0] current;
+    reg [4:0] steps_from_start = 0;
+    reg [4:0] current = 0;
     reg start = 0;
     
-    reg [2:0] bomb_random;
+    reg [2:0] bomb_random = 0;
     
     always @ (posedge start_generating) begin
-        walls <= 31'h7FFFFFFF; #10;
-        visited <= 0;
-        //generation_completed = 0;
-        //walls_removed = 0;
-        steps_from_start <= 0;
-        current <= 0;
+//        //walls <= 31'h7FFFFFFF; #10;
+//        visited <= 0;
+//        //generation_completed = 0;
+//        //walls_removed = 0;
+//        steps_from_start <= 0;
+//        current <= 0;
         start <= ~start;
         
         //use clk and clk_random to decide a square for bomb
@@ -65,15 +64,13 @@ module maze_generator(
     
     wire neighbour_exists;
     wire [4:0] neighbour;
-    reg [1:0] direction;
-    reg direction_change;
+    reg [1:0] direction = 0;
+    reg direction_change = 0;
     get_neighbour get_neighbour(current, direction, neighbour_exists, neighbour);
     
     wire wall_exists;
     wire [4:0] wall;
-    wire [15:0] oled_data;
     get_wall get_wall(current, direction, walls, wall_exists, wall);
-    wall_display wall_display(clk, x, y, oled_data);
 
     always @ (current or start) begin
         visited[current] = 1;
