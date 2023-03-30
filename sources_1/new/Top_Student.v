@@ -234,5 +234,5 @@ module Top_Student (
         (state == c_task ? c_indiv_oled_data : 
         (state == d_task ? d_indiv_oled_data :
         (state == c_improv ? ftw_oled_data : 
-        (state == d_improv ? oled_oled_data : 0)))));
+        ((state == d_improv || state == b_improv) ? oled_oled_data : 0)))));
 endmodule
