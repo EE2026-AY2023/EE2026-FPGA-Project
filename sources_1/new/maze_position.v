@@ -21,7 +21,7 @@
 
 
 module maze_position(
-    input btnC, btnD, btnU, btnL, btnR, clock,
+    input btnC, btnD, btnU, btnL, btnR,
     input [30:0] walls,
     input start_game,
     output reg [4:0] position = 0 //start at the "0" square
