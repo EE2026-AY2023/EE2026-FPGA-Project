@@ -30,6 +30,8 @@ module Top_Student (
     output [15:0] led,
     output [7:0] JC,JA
     );
+    
+    wire [3:0] state;
     parameter [3:0] group = 4'b0000;
     parameter [3:0] studentA = 4'b0011;
     parameter [3:0] studentB = 4'b0110;
@@ -92,10 +94,15 @@ module Top_Student (
     wire valid;
     button_sensor test_valid(clock, sw[15], valid);
     
+    
+    
+    wire [4:0] maze_position, maze_bomb;
+    
+    
     //audio out stuff
     wire [11:0] audio_out;
-    
-    audio_logic audio_main(clock, clk200, clk400, btnC, sw, is_valid_number, valid_number, audio_out);
+    audio_logic audio_main(clock, clk200, clk400, state, btnC, sw, is_valid_number, valid_number, 
+    maze_position, maze_bomb, audio_out);
         
     Audio_Output speaker(
     .CLK(clk50M), .START(clk20k), .DATA1(audio_out), .RST(0),
@@ -146,7 +153,6 @@ module Top_Student (
     debounce test_btnR(clock, btnR, clean_btnR);
     wire clean_btnL;
     debounce test_btnL(clock, btnL, clean_btnL);
-    wire [3:0] state;
     menu menu_disp(clock,clean_btnU,clean_btnD,clean_btnL,clean_btnR,sw[14],menu_oled_x,menu_oled_y,menu_oled_data,state);
     //menu menu_disp(clock,sw[0],sw[1],sw[2],sw[3],sw[14],menu_oled_x,menu_oled_y,menu_oled_data);
     
