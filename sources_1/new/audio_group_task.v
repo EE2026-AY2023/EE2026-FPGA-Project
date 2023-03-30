@@ -27,7 +27,7 @@ module audio_group_task(
     output [11:0] audio_out
     );
     
-    wire [31:0] sound_duration = valid_number * 10_000_000;
+    wire [31:0] sound_duration = (valid_number + 1) * 10_000_000;
     wire sound_on;
     wire [11:0] signal_200;
     
