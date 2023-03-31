@@ -51,6 +51,12 @@ module maze_logic(
     parameter game_loss = 2;
     parameter game_win = 3;
     
+    wire [30:0] walls;
+    wire [4:0] position, bomb;
+    wire [1:0] random;
+    wire [11:0] maze_audio;
+    assign audio_out = (game_state == game_play) ? maze_audio : 0; 
+    
     wire [15:0] end_lose_sc;
     ftb_end_loss_screen endlsc(clk100M,oled_x,oled_y,end_lose_sc);
     wire [15:0] end_win_sc;
@@ -58,7 +64,7 @@ module maze_logic(
     wire [15:0] start_sc;
     ftb_start_screen startsc(clk100M,oled_x,oled_y,start_sc);
     wire [15:0] maze_sc;
-    //maze_display instantiate
+    wall_display maze_display(clk100M, walls, position, oled_x, oled_y, maze_sc);
     
     
     always @ game_state begin
@@ -69,25 +75,22 @@ module maze_logic(
             game_win : oled_out <= end_win_sc;
         endcase
     end
-    
-    wire [30:0] walls;
-    wire [4:0] position, bomb;
-    wire [1:0] random;
-    reg start_game;
 
+    wire start_game = (game_state == game_start || game_state == game_play) ? c : 0;    
     clk_random clk_random(clk100M, random);
     maze_generator maze_generator(clk100M, random, start_game, walls, bomb);
-    maze_position maze_position(c, d, u, l, r, walls, start_game, position);
-    maze_proximity maze_proximity(clk100M, position, bomb, audio_out);
+    maze_position maze_position(d, u, l, r, walls, position);
+    maze_proximity maze_proximity(clk100M, position, bomb, maze_audio);
 
     always @ (posedge c) begin
         case (game_state)
             game_start : begin
-                start_game <= 1;
+//                start_game = 1; 
+//                #50_000_000; start_game = 0;
                 game_state <= game_play;
             end
             game_play : begin
-                start_game <= 0;
+                //start_game <= 0;
                 game_state <= (position == bomb) ? game_win : game_loss;
             end
             game_loss : game_state <= game_start;

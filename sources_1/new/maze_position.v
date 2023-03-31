@@ -21,9 +21,8 @@
 
 
 module maze_position(
-    input btnC, btnD, btnU, btnL, btnR,
+    input btnD, btnU, btnL, btnR,
     input [30:0] walls,
-    input start_game,
     output reg [4:0] position = 0 //start at the "0" square
     );
     
@@ -31,7 +30,7 @@ module maze_position(
     wire [4:0] neighbour; //square of neighbour
     reg [1:0] direction = 0; //up == 0, down == 2, left == 3, right == 1
    
-    reg [4:0] wall; 
+    wire [4:0] wall; 
     
     wire has_neighbour; 
     wire has_wall;
@@ -44,9 +43,9 @@ module maze_position(
 //    get_neighbour unit_neighbour(position, direction, has_neighbour, neighbour_position);
 //    get_wall unit_wall(position, direction, walls, has_wall, wall); 
 
-    always @ (posedge start_game) begin
-        position <= 0;
-    end
+//    always @ (posedge start_game) begin
+//        position <= 0;
+//    end
     //when U, D, L, R, button is pressed, check whether neighbour exists first
     //if neighbour exists, check whether there is a wall
     //then, move/dont move accordingly

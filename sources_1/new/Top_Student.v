@@ -100,9 +100,14 @@ module Top_Student (
     
     
     //audio out stuff
+    
+    wire [11:0] maze_audio_out;
+    
+    
+    
     wire [11:0] audio_out;
     audio_logic audio_main(clock, clk200, clk400, state, btnC, sw, is_valid_number, valid_number, 
-    maze_position, maze_bomb, audio_out);
+    maze_audio_out, audio_out);
         
     Audio_Output speaker(
     .CLK(clk50M), .START(clk20k), .DATA1(audio_out), .RST(0),
@@ -213,21 +218,25 @@ module Top_Student (
     assign led[13] = (mouse_right_click)? 1 : 0;
     assign led[8:0] = state == a_improv ? (sw[1] ? LED_morse : first_nine_LED) : first_nine_LED;
     
-    wire [15:0] end_lose_sc;
+    
     //change this to game state
     reg [31:0] c = 0;
     always @(posedge clock) begin
         c = (c == 300_000_000) ? 0 : c + 1;
     end
-    ftb_end_loss_screen endlsc(clock, oled_x, oled_y, end_lose_sc);
-    wire [15:0] end_win_sc;
-    ftb_end_win_screen endwsc(clock, oled_x, oled_y, end_win_sc);
-    wire [15:0] startsc;
-    ftb_start_screen start_sc(clock, oled_x, oled_y, startsc);
+//    wire [15:0] end_lose_sc;
+//    ftb_end_loss_screen endlsc(clock, oled_x, oled_y, end_lose_sc);
+//    wire [15:0] end_win_sc;
+//    ftb_end_win_screen endwsc(clock, oled_x, oled_y, end_win_sc);
+//    wire [15:0] startsc;
+//    ftb_start_screen start_sc(clock, oled_x, oled_y, startsc);
     wire [15:0] ftb_oled_data;
     
+    maze_logic maze(clock, state, oled_x, oled_y, btnU, btnR, btnD, btnL, btnC, ftb_oled_data, maze_audio_out);
+     
+    
     //change this to game state logic
-    assign ftb_oled_data = (c <= 200_000_000) ? startsc : ((c <= 250_000_000) ? end_win_sc : ((c <= 300_000_000) ? end_lose_sc : 0));
+    //assign ftb_oled_data = (c <= 200_000_000) ? startsc : ((c <= 250_000_000) ? end_win_sc : ((c <= 300_000_000) ? end_lose_sc : 0));
     
     assign oled_data = state == grp_task ? group_task_oled_data : 
         (state == grp_impr ? ftb_oled_data : 
