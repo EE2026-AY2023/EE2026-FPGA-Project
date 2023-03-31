@@ -461,6 +461,7 @@ module wall_display(
                 end
             end
         else if ((x >= 70) && (x <= 85) && (y >= 33) && (y <= 46))
+            begin
             if (square [14] == 0) begin
                     oled_data <= 16'b11111_111111_11111;
                 end
