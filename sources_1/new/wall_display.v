@@ -349,8 +349,8 @@ module wall_display(
                 else if (x == 21 && y == 8) oled_data <= 16'b11111_000000_00000;
                 else if (x == 15 && y == 11) oled_data <= 16'b11111_000000_00000;
                 else if (x == 22 && y == 11) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 16 && x <= 21) && (y == 4)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 16 && x <= 21) && (y == 14)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 27) && (x <= 40) && (y >= 3) && (y <= 16))
@@ -371,8 +371,8 @@ module wall_display(
                 else if (x == 36 && y == 8) oled_data <= 16'b11111_000000_00000;
                 else if (x == 30 && y == 11) oled_data <= 16'b11111_000000_00000;
                 else if (x == 37 && y == 11) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 31 && x <= 36) && (y == 4)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 31 && x <= 36) && (y == 14)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 42) && (x <= 55) && (y >= 3) && (y <= 16))
@@ -393,8 +393,8 @@ module wall_display(
                 else if (x == 50 && y == 8) oled_data <= 16'b11111_000000_00000;
                 else if (x == 45 && y == 11) oled_data <= 16'b11111_000000_00000;
                 else if (x == 52 && y == 11) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 46 && x <= 61) && (y == 4)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 46 && x <= 61) && (y == 14)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 57) && (x <= 70) && (y >= 3) && (y <= 16))
@@ -415,8 +415,8 @@ module wall_display(
                 else if (x == 65 && y == 8) oled_data <= 16'b11111_000000_00000;
                 else if (x == 60 && y == 11) oled_data <= 16'b11111_000000_00000;
                 else if (x == 67 && y == 11) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 61 && x <= 66) && (y == 4)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 61 && x <= 66) && (y == 14)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 72) && (x <= 85) && (y >= 3) && (y <= 16))
@@ -437,8 +437,8 @@ module wall_display(
                 else if (x == 80 && y == 8) oled_data <= 16'b11111_000000_00000;
                 else if (x == 75 && y == 11) oled_data <= 16'b11111_000000_00000;
                 else if (x == 77 && y == 11) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 76 && x <= 81) && (y == 4)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 76 && x <= 81) && (y == 14)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         
@@ -460,8 +460,8 @@ module wall_display(
                 else if (x == 21 && y == 23) oled_data <= 16'b11111_000000_00000;
                 else if (x == 15 && y == 26) oled_data <= 16'b11111_000000_00000;
                 else if (x == 22 && y == 26) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 16 && x <= 21) && (y == 19)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 16 && x <= 21) && (y == 29)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 27) && (x <= 40) && (y >= 18) && (y <= 31))
@@ -482,8 +482,8 @@ module wall_display(
                 else if (x == 36 && y == 23) oled_data <= 16'b11111_000000_00000;
                 else if (x == 30 && y == 26) oled_data <= 16'b11111_000000_00000;
                 else if (x == 37 && y == 26) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 31 && x <= 36) && (y == 19)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 31 && x <= 36) && (y == 29)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 42) && (x <= 55) && (y >= 18) && (y <= 31))
@@ -504,8 +504,8 @@ module wall_display(
                 else if (x == 50 && y == 23) oled_data <= 16'b11111_000000_00000;
                 else if (x == 45 && y == 26) oled_data <= 16'b11111_000000_00000;
                 else if (x == 52 && y == 26) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 46 && x <= 61) && (y == 19)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 46 && x <= 61) && (y == 29)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 57) && (x <= 70) && (y >= 18) && (y <= 31))
@@ -526,8 +526,8 @@ module wall_display(
                 else if (x == 65 && y == 23) oled_data <= 16'b11111_000000_00000;
                 else if (x == 60 && y == 26) oled_data <= 16'b11111_000000_00000;
                 else if (x == 67 && y == 26) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 61 && x <= 66) && (y == 19)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 61 && x <= 66) && (y == 29)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 72) && (x <= 85) && (y >= 18) && (y <= 31))
@@ -548,8 +548,8 @@ module wall_display(
                 else if (x == 80 && y == 23) oled_data <= 16'b11111_000000_00000;
                 else if (x == 75 && y == 26) oled_data <= 16'b11111_000000_00000;
                 else if (x == 77 && y == 26) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 76 && x <= 81) && (y == 19)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 76 && x <= 81) && (y == 29)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 12) && (x <= 25) && (y >= 33) && (y <= 46))
@@ -570,8 +570,8 @@ module wall_display(
                 else if (x == 21 && y == 38) oled_data <= 16'b11111_000000_00000;
                 else if (x == 15 && y == 41) oled_data <= 16'b11111_000000_00000;
                 else if (x == 22 && y == 41) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 16 && x <= 21) && (y == 34)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 16 && x <= 21) && (y == 44)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 27) && (x <= 40) && (y >= 33) && (y <= 46))
@@ -592,8 +592,8 @@ module wall_display(
                 else if (x == 36 && y == 38) oled_data <= 16'b11111_000000_00000;
                 else if (x == 30 && y == 41) oled_data <= 16'b11111_000000_00000;
                 else if (x == 37 && y == 41) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 31 && x <= 36) && (y == 34)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 31 && x <= 36) && (y == 44)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 42) && (x <= 55) && (y >= 33) && (y <= 46))
@@ -614,8 +614,8 @@ module wall_display(
                 else if (x == 50 && y == 38) oled_data <= 16'b11111_000000_00000;
                 else if (x == 45 && y == 41) oled_data <= 16'b11111_000000_00000;
                 else if (x == 52 && y == 41) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 46 && x <= 61) && (y == 34)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 46 && x <= 61) && (y == 44)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 57) && (x <= 70) && (y >= 33) && (y <= 46))
@@ -636,8 +636,8 @@ module wall_display(
                 else if (x == 65 && y == 38) oled_data <= 16'b11111_000000_00000;
                 else if (x == 60 && y == 41) oled_data <= 16'b11111_000000_00000;
                 else if (x == 67 && y == 41) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 61 && x <= 66) && (y == 34)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 61 && x <= 66) && (y == 44)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 72) && (x <= 85) && (y >= 33) && (y <= 46))
@@ -658,8 +658,8 @@ module wall_display(
                 else if (x == 80 && y == 38) oled_data <= 16'b11111_000000_00000;
                 else if (x == 75 && y == 41) oled_data <= 16'b11111_000000_00000;
                 else if (x == 77 && y == 41) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 76 && x <= 81) && (y == 34)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 76 && x <= 81) && (y == 44)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 12) && (x <= 25) && (y >= 48) && (y <= 60))
@@ -680,8 +680,8 @@ module wall_display(
                 else if (x == 21 && y == 53) oled_data <= 16'b11111_000000_00000;
                 else if (x == 15 && y == 56) oled_data <= 16'b11111_000000_00000;
                 else if (x == 22 && y == 56) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 16 && x <= 21) && (y == 49)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 16 && x <= 21) && (y == 58)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 27) && (x <= 40) && (y >= 48) && (y <= 60))
@@ -702,8 +702,8 @@ module wall_display(
                 else if (x == 36 && y == 53) oled_data <= 16'b11111_000000_00000;
                 else if (x == 30 && y == 56) oled_data <= 16'b11111_000000_00000;
                 else if (x == 37 && y == 56) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 31 && x <= 36) && (y == 49)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 31 && x <= 36) && (y == 58)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 42) && (x <= 55) && (y >= 48) && (y <= 60))
@@ -724,8 +724,8 @@ module wall_display(
                 else if (x == 50 && y == 53) oled_data <= 16'b11111_000000_00000;
                 else if (x == 45 && y == 56) oled_data <= 16'b11111_000000_00000;
                 else if (x == 52 && y == 56) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 46 && x <= 61) && (y == 49)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 46 && x <= 61) && (y == 58)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 57) && (x <= 70) && (y >= 48) && (y <= 60))
@@ -746,8 +746,8 @@ module wall_display(
                 else if (x == 65 && y == 53) oled_data <= 16'b11111_000000_00000;
                 else if (x == 60 && y == 56) oled_data <= 16'b11111_000000_00000;
                 else if (x == 67 && y == 56) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 61 && x <= 66) && (y == 49)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 61 && x <= 66) && (y == 58)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else if ((x >= 72) && (x <= 85) && (y >= 48) && (y <= 60))
@@ -768,8 +768,8 @@ module wall_display(
                 else if (x == 80 && y == 53) oled_data <= 16'b11111_000000_00000;
                 else if (x == 75 && y == 56) oled_data <= 16'b11111_000000_00000;
                 else if (x == 77 && y == 56) oled_data <= 16'b11111_000000_00000;
-                else if ((x >= 76 && x <= 81) && (y == 49)) oled_data <= 16'b11111_000000_00000;
-                else oled_data <= 16'b00000_000000_00000;
+                else if ((x >= 76 && x <= 81) && (y == 58)) oled_data <= 16'b11111_000000_00000;
+                else oled_data <= 16'b11111_111111_11111;
                 end
             end
         else 
