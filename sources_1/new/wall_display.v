@@ -22,23 +22,11 @@
 
 module wall_display(
     input clock,
+    input [30:0] maze,
+    input [4:0] position,
     input [6:0] x, y,
     output reg [15:0] oled_data = 0
     );
-    
-    wire [1:0] clk_random;
-    wire start_generating;
-    wire btnD, btnU, btnL, btnR;
-    wire [4:0] position; //start at the "0" square
-    wire [4:0] bomb;
-    wire [30:0] walls;
-    wire bomb_found;
-    
-    //maze_generator maze_display(clock, clk_random, start_generating, walls, bomb);
-    //player_position player(btnD, btnU, btnL, btnR, clock, position, bomb_found);
-    
-    reg [30:0] maze = 31'b1111_0000_1111_0000_1111_0000_1111_000;
-    //reg [19:0] square;
    
     always @ (posedge clock) begin
     
