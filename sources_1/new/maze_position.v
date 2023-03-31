@@ -21,7 +21,7 @@
 
 
 module maze_position(
-    input btnD, btnU, btnL, btnR,
+    input clk, btnD, btnU, btnL, btnR,
     input [30:0] walls,
     output reg [4:0] position = 0 //start at the "0" square
     );
@@ -52,7 +52,7 @@ module maze_position(
     //.......
     //if center btn is pressed, check whether player is at the bomb
     
-    always @ (*) begin
+    always @ (posedge clk) begin
         if(btnU == 1) begin //go up
             direction <= 0;
             if(has_neighbour == 1 && has_wall == 0) begin
