@@ -415,7 +415,7 @@ module wall_display(
                 oled_data <= 16'b11111_000000_00000;
                 end
             end
-        else if ((x >= 70) && (x <= 85) && (y >= 18) && (y <= 31))
+        else if ((x >= 72) && (x <= 85) && (y >= 18) && (y <= 31))
             begin 
                 if (square [9] == 0) begin
                     oled_data <= 16'b11111_111111_11111;
@@ -460,8 +460,8 @@ module wall_display(
                 oled_data <= 16'b11111_000000_00000;
                 end
             end
-        else if ((x >= 70) && (x <= 85) && (y >= 33) && (y <= 46))
-            begin
+        else if ((x >= 72) && (x <= 85) && (y >= 33) && (y <= 46))
+            begin   
             if (square [14] == 0) begin
                     oled_data <= 16'b11111_111111_11111;
                 end
@@ -505,7 +505,7 @@ module wall_display(
                 oled_data <= 16'b11111_000000_00000;
                 end
             end
-        else if ((x >= 70) && (x <= 85) && (y >= 48) && (y <= 60))
+        else if ((x >= 72) && (x <= 85) && (y >= 48) && (y <= 60))
             begin 
                 if (square [19] == 0) begin
                     oled_data <= 16'b11111_111111_11111;
