@@ -331,6 +331,186 @@ module wall_display(
                             oled_data <= 16'b00000_000000_00000;
                             end
             end
+         else if ((x >= 12) && (x <= 25) && (y >= 3) && (y <= 16))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 27) && (x <= 40) && (y >= 3) && (y <= 16))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 42) && (x <= 55) && (y >= 3) && (y <= 16))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 57) && (x <= 70) && (y >= 3) && (y <= 16))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 70) && (x <= 85) && (y >= 3) && (y <= 16))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        
+        else if ((x >= 12) && (x <= 25) && (y >= 18) && (y <= 31))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 27) && (x <= 40) && (y >= 18) && (y <= 31))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 42) && (x <= 55) && (y >= 18) && (y <= 31))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 57) && (x <= 70) && (y >= 18) && (y <= 31))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 70) && (x <= 85) && (y >= 18) && (y <= 31))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 12) && (x <= 25) && (y >= 33) && (y <= 46))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 27) && (x <= 40) && (y >= 33) && (y <= 46))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 42) && (x <= 55) && (y >= 33) && (y <= 46))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 57) && (x <= 70) && (y >= 33) && (y <= 46))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 70) && (x <= 85) && (y >= 33) && (y <= 46))
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 12) && (x <= 25) && (y >= 48) && (y <= 60))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 27) && (x <= 40) && (y >= 48) && (y <= 60))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 42) && (x <= 55) && (y >= 48) && (y <= 60))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 57) && (x <= 70) && (y >= 48) && (y <= 60))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
+        else if ((x >= 70) && (x <= 85) && (y >= 48) && (y <= 60))
+            begin 
+                if (square [0] == 0) begin
+                    oled_data <= 16'b11111_111111_11111;
+                end
+                else begin
+                oled_data <= 16'b11111_000000_00000;
+                end
+            end
         else 
             begin
                 oled_data <= 16'b11111_111111_11111;
