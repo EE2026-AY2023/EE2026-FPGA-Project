@@ -32,7 +32,7 @@ module wall_display(
     wire [2:0] curr_x;
     wire [1:0] curr_y;
     wire [6:0] oled_pos_x , oled_pos_y;
-    assign oled_pos_x = (curr_x+1) * 15 + 2;
+    assign oled_pos_x = (curr_x+1) * 15 - 2;
     assign oled_pos_y = curr_y * 15 + 3;
     get_coordinate curr(position,curr_x, curr_y);
     wire [3:0] px, py;
