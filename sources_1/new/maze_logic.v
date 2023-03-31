@@ -32,11 +32,13 @@ module maze_logic(
     parameter [3:0] grp_impr = 4'b0010;
     
     wire U, D, L, R, C;
-    button_sensor button_U(clk100M, btnU, U);
-    button_sensor button_D(clk100M, btnD, D);
-    button_sensor button_L(clk100M, btnL, L);
-    button_sensor button_R(clk100M, btnR, R);
-    button_sensor button_C(clk100M, btnC, C);
+    debounce button_U(clk100M, btnU, U);
+    debounce button_D(clk100M, btnD, D);
+    debounce button_L(clk100M, btnL, L);
+    debounce button_R(clk100M, btnR, R);
+    debounce button_C(clk100M, btnC, C);
+    wire clk_btn;
+    clk_div slow_clk_btn(clk100M,10_500_000, clk_btn);
     
     wire u, d, l, r, c;
     assign u = (state == grp_impr) ? U : 0;
@@ -79,7 +81,7 @@ module maze_logic(
     wire start_game = (game_state == game_start || game_state == game_play) ? c : 0;    
     clk_random clk_random(clk100M, random);
     maze_generator maze_generator(clk100M, random, start_game, walls, bomb);
-    maze_position maze_position(d, u, l, r, walls, position);
+    maze_position maze_position(clk_btn, d, u, l, r, walls, position);
     maze_proximity maze_proximity(clk100M, position, bomb, maze_audio);
 
     always @ (posedge c) begin
