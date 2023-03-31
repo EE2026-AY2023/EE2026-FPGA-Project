@@ -657,7 +657,7 @@ module menu(
     end
     
     wire clk_btn;
-    clk_div slow_clk_btn(clock,13_000_000, clk_btn);
+    clk_div slow_clk_btn(clock,10_500_000, clk_btn);
     reg [3:0] next_state = 0;
     always @(posedge clk_btn) begin 
         if (sw == 1) begin
