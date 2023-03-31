@@ -3,10 +3,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 //
 //  FILL IN THE FOLLOWING INFORMATION:
-//  STUDENT A NAME: 
-//  STUDENT B NAME:
-//  STUDENT C NAME: 
-//  STUDENT D NAME:  
+//  STUDENT A NAME: Koh Jing Jie Marcus
+//  STUDENT B NAME: Zhou Kaiwen
+//  STUDENT C NAME: Koh Ngiap Hin
+//  STUDENT D NAME: Hoo Teng Juan
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Top_Student (
@@ -177,6 +177,7 @@ module Top_Student (
     wire [6:0] mouse_y_scale;
     mouse_xy_scale xy_scale(mouse_xpos, mouse_ypos, mouse_x_scale, mouse_y_scale);
     wire [15:0] c_indiv_oled_data;
+    
     stu_C_indiv_task c_indiv_task(clock, mouse_middle_click, oled_x, oled_y, mouse_x_scale, mouse_y_scale, c_indiv_oled_data);
     
     //Student C improvement: Find the white game 
